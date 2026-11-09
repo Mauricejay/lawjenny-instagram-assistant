@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#8a3ab9">
+<title>Instagram Assistant</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(145deg,#feda75,#fa7e1e 35%,#d62976 68%,#962fbf);display:grid;place-items:center;padding:20px;color:#222}
+main{width:min(100%,430px);background:#fff;border-radius:24px;padding:28px 22px;box-shadow:0 18px 55px #5a174c55}
+.logo{width:68px;height:68px;margin:0 auto 14px;border-radius:20px;background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);display:grid;place-items:center;color:white;font-size:34px;font-weight:800}
+h1{text-align:center;font-size:24px;margin:8px 0}p{text-align:center;color:#666;line-height:1.5;margin:8px 0 22px}
+label{display:block;font-weight:650;margin:18px 0 7px;font-size:14px}input{width:100%;padding:13px;border:1px solid #ddd;border-radius:12px;font-size:16px}
+.actions{display:flex;gap:8px;margin-top:9px}.actions button{flex:1}
+button,.primary{border:0;border-radius:12px;padding:13px 14px;font-size:15px;font-weight:700;cursor:pointer;background:#f1eef5;color:#54236c}
+.primary{display:block;text-align:center;text-decoration:none;background:linear-gradient(100deg,#d62976,#962fbf);color:#fff;margin-top:22px}
+.note{font-size:12px;color:#777;margin-top:18px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">◎</div>
+  <h1>Instagram Assistant</h1>
+  <p>Get ready to create your Instagram account. Your registration and verification happen securely on Instagram.</p>
+
+  <label for="username">Username idea</label>
+  <input id="username" placeholder="Your preferred username" autocomplete="off">
+  <div class="actions">
+    <button type="button" id="suggest">Suggest username</button>
+    <button type="button" id="copyUser">Copy</button>
+  </div>
+
+  <label for="password">Password suggestion</label>
+  <input id="password" type="text" placeholder="Generate a strong password" readonly>
+  <div class="actions">
+    <button type="button" id="generate">Generate password</button>
+    <button type="button" id="copyPass">Copy</button>
+  </div>
+
+  <a class="primary" href="https://www.instagram.com/accounts/emailsignup/" target="_blank" rel="noopener">Continue to Instagram signup</a>
+  <div class="note">Never share your password or Instagram verification code with a bot or another person.</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+$("suggest").onclick=()=>{$("username").value=pick(["bright","daily","its","the","hello","real"])+pick(["mira","nova","sunny","jay","luna","vibe"])+Math.floor(10+Math.random()*990)};
+$("generate").onclick=()=>{const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";let s="";for(let i=0;i<16;i++)s+=chars[Math.floor(Math.random()*chars.length)];$("password").value=s};
+$("copyUser").onclick=()=>{if($("username").value)navigator.clipboard?.writeText($("username").value)};
+$("copyPass").onclick=()=>{if($("password").value)navigator.clipboard?.writeText($("password").value)};
+</script>
+</body>
+</html>
